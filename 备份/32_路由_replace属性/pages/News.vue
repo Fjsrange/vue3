@@ -1,6 +1,6 @@
 <script setup lang="ts" name="News">
 import { reactive } from "vue";
-import { RouterLink, RouterView, useRouter } from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 
 const newsList = reactive([
   { id: 1, title: "好消息", content: "新闻001的内容" },
@@ -8,27 +8,6 @@ const newsList = reactive([
   { id: 3, title: "煤油车", content: "新闻003的内容" },
   { id: 4, title: "版本之子", content: "新闻004的内容" },
 ]);
-
-const router = useRouter();
-
-// 写一个接口限制传递的类型
-interface NewInter {
-  id: string;
-  title: string;
-  content: string;
-}
-
-function showNewsDetail(news: NewInter) {
-  const { id, title, content } = news;
-  router.push({
-    name: "newsDetail",
-    query: {
-      id,
-      title,
-      content,
-    },
-  });
-}
 </script>
 
 <template>
@@ -36,7 +15,11 @@ function showNewsDetail(news: NewInter) {
     <!-- 导航区 -->
     <ul>
       <li v-for="news in newsList" :key="news.id">
-        <button @click="showNewsDetail(news)">查看新闻</button>
+        <!-- 第一种写法 -->
+        <!-- <RouterLink
+          :to="`/news/detail/${news.id}/${news.title}/${news.content}`"
+          >{{ news.title }}</RouterLink
+        > -->
         <!-- 第二种写法 -->
         <RouterLink
           :to="{
