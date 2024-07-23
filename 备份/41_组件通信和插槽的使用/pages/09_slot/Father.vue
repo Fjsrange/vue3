@@ -13,9 +13,7 @@
         <img :src="imgUrl" />
       </Category>
       <Category title="今日影视推荐">
-        <video>
-          <source :src="videoUrl" />
-        </video>
+        <video :src="videoUrl" controls></video>
       </Category>
     </div>
     <div class="content">
