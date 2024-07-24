@@ -5,9 +5,15 @@ import Child from "@/Child.vue";
 
 <template>
   <div class="app">
-    <h2>我是app组件{{ x }}</h2>
-    <Hello />
-    <Child />
+    <h2>我是app组件</h2>
+    <Suspense>
+      <template v-slot:default>
+        <Child />
+      </template>
+      <template v-slot:fallback>
+        <h2>加载中...</h2>
+      </template>
+    </Suspense>
   </div>
 </template>
 

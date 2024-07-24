@@ -1,5 +1,7 @@
 <script setup lang="ts" name="App">
-import { ref, readonly } from "vue";
+import { ref, readonly, shallowReadonly } from "vue";
+// readonly 用于保护数据，readonly是所有的只读
+// shallowReadonly 用于保护数据，但是浅层只读，只保护第一层的数据
 
 let sum = ref(0);
 let sum2 = readonly(sum);
@@ -10,7 +12,7 @@ let car = ref({
     price: 100000,
   },
 });
-let car2 = readonly(car.value);
+let car2 = shallowReadonly(car.value);
 
 function changeSum() {
   sum.value += 1;
